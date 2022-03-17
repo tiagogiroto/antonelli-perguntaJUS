@@ -163,51 +163,17 @@
             </div>
                     
             <div class="fale-conosco">
-                <form> 
-                    <div class="card" style="width: 40rem;">
-                        <div class="container-fluid">
-                            <div class="mb-3">
-                                <label  class="form-label" >Digite o assunto</label>
-                                <input class="form-control" id="assunto" name='assunto'>
-                            </div>
-                            <div class="mb-3">
-                                <label  class="form-label" >Explique o seu problema</label>
-                                <textarea  class="problema-area form-control" id="problema" name='problema' rows="3"></textarea>
-                            </div>
-        
-                            <div class="">
-                                <div class=" col mb-3">
-                                    <label  class="form-label" >Nome</label>
-                                    <input class="form-control" id="nome" name='nome' type='text' data-mask-selectonfocus="true">
-                                </div>
-        
-                            <div class="mb-3">
-                                <label  class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" rows="3" placeholder="name@example.com" name='email'></input>
-                            </div>
-        
-                            <div class="row">
-                                <div class="col mb-3">
-                                    <label  class="form-label" >Telefone</label>
-                                    <input class="form-control" id="tel" rows="3" name='tel' placeholder="(00) 00000 - 0000"></input>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label  class="form-label">Onde você mora ?</label>
-                                <input type="email" class="form-control" id="local" rows="3" placeholder="Cidade / Estado" name='local'></input>
-                            </div>
-        
-                            <div class="d-grid gap-2 col-6 mx-auto">
-                                <button type="button" class="btn btn-primary">Enviar</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                <button onClick="abrirCadastro()">Ir para Cadastro</button>
+               
             </div>
         </div>
 
         <script>
+
+        function abrirCadastro(){
+            window.location.href = "cadastro.php";
+        }
+
         $(document).ready(function (){
 
             $("#inicio").click(function (){
@@ -234,38 +200,6 @@
     </script>
 
 
-        <script>
-            function sendData() {
-                var assunto = document.getElementById("assunto").value;
-                var problema = document.getElementById("problema").value;
-                var nome = document.getElementById("nome").value;
-                var email = document.getElementById("email").value;
-                var tel = document.getElementById("tel").value;
-                var local = document.getElementById("local").value;
-
-                var obj = {
-                    dataSend: [
-
-                    ]   
-                }
-
-                obj.dataSend.push(
-                    {
-                        Assunto: assunto, 
-                        Problema: problema, 
-                        Nome: nome,
-                        Email: email, 
-                        Telefone: tel,
-                        Local: local ,
-                    })
-
-                var json = JSON.stringify(obj);
-                
-
-                // send file to php 
-                window.location.href= "sendQuestion.php?" + json;
-
-            }
-            </script>
+        
     </body>
 </html>
