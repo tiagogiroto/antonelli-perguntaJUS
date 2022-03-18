@@ -152,24 +152,24 @@ header('Access-Control-Allow-Origin: *');
                             <div class="container-fluid">
 
                                 <div class="row">
-                                    <div class=" col-9 mb-6">
+                                    <div class=" col-6 mb-6">
                                         <label  class="form-label" >Nome</label>
                                         <input class="form-control" id="nome" name='nome' type='text' data-mask-selectonfocus="true">
                                     </div>
 
-                                    <div class=" col-3 mb-6">
+                                    <div class=" col-6 mb-6">
                                         <label  class="form-label" >Profissão</label>
                                         <input class="form-control" id="profissao" name='profissao' type='text' data-mask-selectonfocus="true">
                                     </div>
 
                                 </div>
                                 <div class="row">
-                                <div class=" col mb-3">
+                                <div class=" col-6 mb-3">
                                         <label  class="form-label" >CPF</label>
                                         <input maxlength="11" placeholder="000.000.000-00  Obrigatório" class=" form-control" id="cpf" name='cpf' type='text' data-mask="000.000.000-00" data-mask-selectonfocus="true">
                                     </div>
 
-                                    <div class=" col mb-3">
+                                    <div class="col-6 mb-3">
                                         <label  class="form-label" >RG</label>
                                         <input class="form-control" id="rg" name='rg' type='text' data-mask-selectonfocus="true">
                                     </div>
@@ -194,11 +194,11 @@ header('Access-Control-Allow-Origin: *');
                                         <div class="col mb-3">
                                             <input type="text" class="form-control" id="cep" maxlength="9" placeholder="13483-000" autofocus></input>           
                                         </div>
-
                                         <div class="col mb-3">
                                             <input type="email" class="form-control" id="bairro" rows="3" placeholder="Bairro" name='local'></input>           
                                         </div>
-
+                                    </div>
+                                    <div class="row">
                                         <div class="col mb-3">
                                             <input type="email" class="form-control" id="local" rows="3" placeholder="Complemento" name='local'></input>           
                                         </div>
@@ -209,11 +209,11 @@ header('Access-Control-Allow-Origin: *');
                                     </div>
                                    
                                     <div class="row">
-                                        <div class="col-2 mb-3">
+                                        <div class="col-6 mb-3">
                                             <input type="text" class="form-control" id="uf" rows="3" placeholder="Estado" name='estado' disabled></input>           
                                         </div> 
     
-                                        <div class="col mb-3">
+                                        <div class="col-6    mb-3">
                                             <input type="text" class="form-control" id="cidade" rows="3" placeholder="Cidade" name='local' disabled></input>           
                                         </div>
                                     </div>
@@ -228,10 +228,6 @@ header('Access-Control-Allow-Origin: *');
                                     <textarea  class="problema-area form-control" id="problema" name='problema' rows="3"></textarea>
                                 </div>
             
-
-                                
-
-
                                 <div class="d-grid gap-2 col-6 mx-auto">
                                     <button type="button" class="btn btn-primary" onClick="sendData()">Enviar</button>
                                 </div>
@@ -399,18 +395,14 @@ header('Access-Control-Allow-Origin: *');
 
                                 var json = JSON.stringify(obj);
                                 console.log(json)
+
+
+                                // send file to php 
+                                window.location.href= "sendQuestion.php?" + json;
                             }
                         }, 3000);
 
                     }
-
-                    
-                    
-                    
-
-                    // send file to php 
-                    // window.location.href= "sendQuestion.php?" + json;
-    
             }
                 </script>
         </body>
