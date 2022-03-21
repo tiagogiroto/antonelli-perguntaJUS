@@ -1,5 +1,12 @@
+<?php
+    include('verifica_login.php');
+?>
 
 
+<div class="id-login">
+    <h2 class="nome-login">Ola, <?php echo $_SESSION['login']; ?></h2>
+    <h2 class="sair"><a href='logout.php'>SAIR</a></h2>
+</div>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -84,10 +91,6 @@ $lista = substr($arrray[0], strpos($arrray[0],"")+4);
 //   default;
 //   }
 
-
-
-  include('conexao.php');
-
     $sqlContatos = 
     ' SELECT id_contato,nome,profissao,cpf,rg,email,telefone,cep,bairro,complemento,rua,estado,cidade,assunto,problema 
     FROM contato where resposta = 1';
@@ -99,7 +102,7 @@ $lista = substr($arrray[0], strpos($arrray[0],"")+4);
 
     $tabela = "<h2 style='text-align: center;'> Contatos Efetuados </h2>" ;
     $tabela .= '<br>';
-    $tabela .= '<table border="1" class="table table-bordered">';
+    $tabela .= '<table border="1" class="table table-bordered ">';
     $tabela .='<thead>';
     $tabela .= '<tr>';
     $tabela .= '<th scope="col">ID</th>';
@@ -154,7 +157,7 @@ $lista = substr($arrray[0], strpos($arrray[0],"")+4);
 
 ?>
 
-<div class="card" style="width:40vh;">
+<div class="card-columns mx-auto d-flex justify-content-center col-12" style="width:40vh;">
   <input class="form-control" id="id" name='id' type='text' data-mask-selectonfocus="true" style="width: 100%;" placeholder="Insira o id respondido">
   <button class="btn btn-primary" onClick="confirmar_resposta()">Confirmar</button>
 </div>
