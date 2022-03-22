@@ -15,7 +15,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <title>Relatórios</title>
 </head>
 <body>
@@ -77,22 +78,9 @@ $arrray = explode(",", $whatIWant);
 $lista = $arrray;
 $lista = substr($arrray[0], strpos($arrray[0],"")+4);
 
-// $lista = substr($arrray[0], strpos($arrray[0],"")+7);
-
-
-// switch($lista){
-//   case 1:
-//     revendedor();
-//     break;
-//   case 2:
-//       lojista();
-//     break;
-
-//   default;
-//   }
 
     $sqlContatos = 
-    ' SELECT id_contato,nome,profissao,cpf,rg,email,telefone,cep,bairro,complemento,rua,estado,cidade,assunto,problema 
+    ' SELECT id_contato,nome,profissao,assunto 
     FROM contato where resposta = 1';
 
     $result = $conn->query($sqlContatos);
@@ -108,18 +96,18 @@ $lista = substr($arrray[0], strpos($arrray[0],"")+4);
     $tabela .= '<th scope="col">ID</th>';
     $tabela .= '<th scope="col">Nome</th>'; 
     $tabela .= '<th scope="col">Profissão</th>'; 
-    $tabela .= '<th scope="col">CPF</th>'; 
-    $tabela .= '<th scope="col">RG</th>'; 
-    $tabela .= '<th scope="col">Email</th>'; 
-    $tabela .= '<th scope="col">Telefone</th>'; 
-    $tabela .= '<th scope="col">CEP</th>'; 
-    $tabela .= '<th scope="col">Bairro</th>'; 
-    $tabela .= '<th scope="col">Complemento</th>';
-    $tabela .= '<th scope="col">Rua</th>';
-    $tabela .= '<th scope="col">Estado</th>';
-    $tabela .= '<th scope="col">Cidade</th>';
+    // $tabela .= '<th scope="col">CPF</th>'; 
+    // $tabela .= '<th scope="col">RG</th>'; 
+    // $tabela .= '<th scope="col">Email</th>'; 
+    // $tabela .= '<th scope="col">Telefone</th>'; 
+    // $tabela .= '<th scope="col">CEP</th>'; 
+    // $tabela .= '<th scope="col">Bairro</th>'; 
+    // $tabela .= '<th scope="col">Complemento</th>';
+    // $tabela .= '<th scope="col">Rua</th>';
+    // $tabela .= '<th scope="col">Estado</th>';
+    // $tabela .= '<th scope="col">Cidade</th>';
     $tabela .= '<th scope="col">Assunto</th>';
-    $tabela .= '<th scope="col">Problema</th>';
+    // $tabela .= '<th scope="col">Problema</th>';
     
   
     
@@ -127,22 +115,22 @@ $lista = substr($arrray[0], strpos($arrray[0],"")+4);
     while($row = $result->fetch_assoc()) {
 
       $tabela .= '<tr>'; 
-      $tabela .= '<td scope="row">'.$row['id_contato'].'</td>';
+      $tabela .= '<td scope="row" id="id_contato">'.$row['id_contato'].'</td>';
       $tabela .= '<td>'.$row['nome'].'</td>'; 
       $tabela .= '<td>'.$row['profissao'].'</td>'; 
-      $tabela .= '<td>'.$row['cpf'].'</td>'; 
-      $tabela .= '<td>'.$row['rg'].'</td>'; 
-      $tabela .= '<td>'.$row['email'].'</td>'; 
-      $tabela .= '<td>'.$row['telefone'].'</td>'; 
-      $tabela .= '<td>'.$row['cep'].'</td>'; 
-      $tabela .= '<td>'.$row['bairro'].'</td>'; 
-      $tabela .= '<td>'.$row['complemento'].'</td>'; 
-      $tabela .= '<td>'.$row['rua'].'</td>';
-      $tabela .= '<td>'.$row['estado'].'</td>'; 
-      $tabela .= '<td>'.$row['cidade'].'</td>'; 
+      // $tabela .= '<td>'.$row['cpf'].'</td>'; 
+      // $tabela .= '<td>'.$row['rg'].'</td>'; 
+      // $tabela .= '<td>'.$row['email'].'</td>'; 
+      // $tabela .= '<td>'.$row['telefone'].'</td>'; 
+      // $tabela .= '<td>'.$row['cep'].'</td>'; 
+      // $tabela .= '<td>'.$row['bairro'].'</td>'; 
+      // $tabela .= '<td>'.$row['complemento'].'</td>'; 
+      // $tabela .= '<td>'.$row['rua'].'</td>';
+      // $tabela .= '<td>'.$row['estado'].'</td>'; 
+      // $tabela .= '<td>'.$row['cidade'].'</td>'; 
       $tabela .= '<td>'.$row['assunto'].'</td>'; 
-      $tabela .= '<td><p>'.$row['problema'].'</p></td>'; 
-
+      // $tabela .= '<td><p>'.$row['problema'].'</p></td>'; 
+      $tabela .='<td><button class="take-id" onclick="visualizacao_completa()">Expandir</button></td>';
     
     }
 
@@ -163,6 +151,34 @@ $lista = substr($arrray[0], strpos($arrray[0],"")+4);
 </div>
 
 <script>
+
+$(".take-id").click(function() {
+    var $row = $(this).closest("tr");    // Find the row
+    var $tds = $row.find("td:nth-child(1)");
+      $.each($tds, function() {
+        
+        var id_linha = $(this).text();
+        console.log(id_linha);
+
+
+        var obj = {
+        dataSend: []
+      }
+      obj.dataSend.push({
+        ID: id_linha
+      })
+
+      var json = JSON.stringify(obj);
+
+      console.log(json)
+
+      window.location.href= "show_cas_by_id.php?" + json;
+
+      });
+    
+});
+
+
   function confirmar_resposta(){
     var id = document.getElementById("id").value;
 
@@ -182,4 +198,5 @@ $lista = substr($arrray[0], strpos($arrray[0],"")+4);
     window.location.href= "response_contact.php?" + json;
 
   }
+
 </script>
