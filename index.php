@@ -1,4 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       
+        <title>Pergunta JUS</title>
+    </head>
+    <body class="full-screen">
 
+
+        <div class="all-page">
+            
+            <div id="div1" class="apresentacao-inicial">
+                <div class="menu shadow p-3 mb-5 bg-body rounded">
+                    <span id="inicio" class="menu-item">Início</span>
+                    <span id="quem-somos" class="menu-item">Quem somos</span>
+                    <span id="sobre" class="menu-item">Sobre</span>
+                    <span id="contato" class="menu-item">Contato</span>
+                </div>
+                
+                <div class="apresentacao">
+                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+                        praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                </div>
+            </div>
+
+            <div class="quem-somos">
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
+                    praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+            </div>
+
+            <div class="como-funciona">
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis 
+                praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+            </div>
+                    
+            <div class="fale-conosco">
+                <button onClick="abrirCadastro()">Ir para Cadastro</button>
+               
+            </div>
+        </div>
+
+        <script>
+
+        function abrirCadastro(){
+            window.location.href = "cadastro.php";
+        }
+
+        $(document).ready(function (){
+
+            $("#inicio").click(function (){
+                var y = $(window).scrollTop();  
+                $(window).scrollTop(y+100);
+            });
+
+            $("#quem-somos").click(function (){
+                var y = $(window).scrollTop();  
+                $(window).scrollTop(y+400);
+            });
+
+            $("#sobre").click(function (){
+                var y = $(window).scrollTop();  
+                $(window).scrollTop(y+850);
+            });
+
+            $("#contato").click(function (){
+                var y = $(window).scrollTop();  
+                $(window).scrollTop(y+2000);
+            });
+        });
+        
+    </script>
+
+
+        
+    </body>
+</html>
 <style>
 @media only screen and (max-width: 600px) {
     .card{
@@ -122,84 +202,3 @@
     }   
 }
 </style>
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-       
-        <title>Pergunta JUS</title>
-    </head>
-    <body class="full-screen">
-
-
-        <div class="all-page">
-            
-            <div id="div1" class="apresentacao-inicial">
-                <div class="menu shadow p-3 mb-5 bg-body rounded">
-                    <span id="inicio" class="menu-item">Início</span>
-                    <span id="quem-somos" class="menu-item">Quem somos</span>
-                    <span id="sobre" class="menu-item">Sobre</span>
-                    <span id="contato" class="menu-item">Contato</span>
-                </div>
-                
-                <div class="apresentacao">
-                    <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                        praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-                </div>
-            </div>
-
-            <div class="quem-somos">
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
-                    praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-            </div>
-
-            <div class="como-funciona">
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis 
-                praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-            </div>
-                    
-            <div class="fale-conosco">
-                <button onClick="abrirCadastro()">Ir para Cadastro</button>
-               
-            </div>
-        </div>
-
-        <script>
-
-        function abrirCadastro(){
-            window.location.href = "cadastro.php";
-        }
-
-        $(document).ready(function (){
-
-            $("#inicio").click(function (){
-                var y = $(window).scrollTop();  
-                $(window).scrollTop(y+100);
-            });
-
-            $("#quem-somos").click(function (){
-                var y = $(window).scrollTop();  
-                $(window).scrollTop(y+400);
-            });
-
-            $("#sobre").click(function (){
-                var y = $(window).scrollTop();  
-                $(window).scrollTop(y+850);
-            });
-
-            $("#contato").click(function (){
-                var y = $(window).scrollTop();  
-                $(window).scrollTop(y+2000);
-            });
-        });
-        
-    </script>
-
-
-        
-    </body>
-</html>
