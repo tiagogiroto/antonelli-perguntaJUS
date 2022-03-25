@@ -2,7 +2,6 @@
     include('verifica_login.php');
 ?>
 
-
 <div class="id-login">
     <h2 class="nome-login">Ola, <?php echo $_SESSION['login']; ?></h2>
     <h2 class="sair"><a href='logout.php'>SAIR</a></h2>
@@ -96,21 +95,7 @@ $lista = substr($arrray[0], strpos($arrray[0],"")+4);
     $tabela .= '<th scope="col">ID</th>';
     $tabela .= '<th scope="col">Nome</th>'; 
     $tabela .= '<th scope="col">Profissão</th>'; 
-    // $tabela .= '<th scope="col">CPF</th>'; 
-    // $tabela .= '<th scope="col">RG</th>'; 
-    // $tabela .= '<th scope="col">Email</th>'; 
-    // $tabela .= '<th scope="col">Telefone</th>'; 
-    // $tabela .= '<th scope="col">CEP</th>'; 
-    // $tabela .= '<th scope="col">Bairro</th>'; 
-    // $tabela .= '<th scope="col">Complemento</th>';
-    // $tabela .= '<th scope="col">Rua</th>';
-    // $tabela .= '<th scope="col">Estado</th>';
-    // $tabela .= '<th scope="col">Cidade</th>';
     $tabela .= '<th scope="col">Assunto</th>';
-    // $tabela .= '<th scope="col">Problema</th>';
-    
-  
-    
 
     while($row = $result->fetch_assoc()) {
 
@@ -118,18 +103,7 @@ $lista = substr($arrray[0], strpos($arrray[0],"")+4);
       $tabela .= '<td scope="row" id="id_contato">'.$row['id_contato'].'</td>';
       $tabela .= '<td>'.$row['nome'].'</td>'; 
       $tabela .= '<td>'.$row['profissao'].'</td>'; 
-      // $tabela .= '<td>'.$row['cpf'].'</td>'; 
-      // $tabela .= '<td>'.$row['rg'].'</td>'; 
-      // $tabela .= '<td>'.$row['email'].'</td>'; 
-      // $tabela .= '<td>'.$row['telefone'].'</td>'; 
-      // $tabela .= '<td>'.$row['cep'].'</td>'; 
-      // $tabela .= '<td>'.$row['bairro'].'</td>'; 
-      // $tabela .= '<td>'.$row['complemento'].'</td>'; 
-      // $tabela .= '<td>'.$row['rua'].'</td>';
-      // $tabela .= '<td>'.$row['estado'].'</td>'; 
-      // $tabela .= '<td>'.$row['cidade'].'</td>'; 
       $tabela .= '<td>'.$row['assunto'].'</td>'; 
-      // $tabela .= '<td><p>'.$row['problema'].'</p></td>'; 
       $tabela .='<td><button class="take-id" onclick="visualizacao_completa()">Expandir</button></td>';
     
     }
@@ -144,11 +118,6 @@ $lista = substr($arrray[0], strpos($arrray[0],"")+4);
 }
 
 ?>
-
-<div class="card-columns mx-auto d-flex justify-content-center col-12" style="width:40vh;">
-  <input class="form-control" id="id" name='id' type='text' data-mask-selectonfocus="true" style="width: 100%;" placeholder="Insira o id respondido">
-  <button class="btn btn-primary" onClick="confirmar_resposta()">Confirmar</button>
-</div>
 
 <script>
 
@@ -170,33 +139,11 @@ $(".take-id").click(function() {
 
       var json = JSON.stringify(obj);
 
-      console.log(json)
 
       window.location.href= "show_cas_by_id.php?" + json;
 
       });
     
 });
-
-
-  function confirmar_resposta(){
-    var id = document.getElementById("id").value;
-
-    console.log(id)
-
-    var obj = {
-      dataSend: []
-    }
-    obj.dataSend.push({
-      ID: id
-    })
-
-    var json = JSON.stringify(obj);
-
-    console.log(json)
-
-    window.location.href= "response_contact.php?" + json;
-
-  }
 
 </script>

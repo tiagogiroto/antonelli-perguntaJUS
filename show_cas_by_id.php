@@ -187,7 +187,7 @@ $URI = urldecode($_SERVER['REQUEST_URI']);
 $whatIWant = substr($URI, strpos($URI, '/'));    
 $arrray = explode(",", $whatIWant);
 
-$id = substr($arrray[0], strpos($arrray[0],"id:")+ 40);
+$id = substr($arrray[0], strpos($arrray[0],"id:")+ 51);
 $id = strtr($id, '"', " ");
 $id = strtr($id, ']', " ");
 $id = strtr($id, '}', " ");
@@ -205,11 +205,12 @@ $id = strtr($id, '}', " ");
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
           $tabela = '<div class="folha dobra" >';
+          $tabela .='<span id="id" style="display: none;">'.$id.'</span>';
           $tabela .= '<h1><strong>'.$row['nome'].'</strong></h1>'; 
           $tabela .= '<span class="linha"> Profissão :'.$row['profissao'].'</span>'; 
           $tabela .= '<span class="linha">CPF :'.$row['cpf'].'</span>'; 
           $tabela .= '<span class="linha">RG : '.$row['rg'].'</span>'; 
-          $tabela .= '<span class="linha"> Email :'.$row['email'].'</span>'; 
+          $tabela .= '<span class="linha" id="email"> Email :'.$row['email'].'</span>'; 
           $tabela .= '<span class="linha"> Telefone :'.$row['telefone'].'</span>'; 
           $tabela .= '<span class="linha"> CEP :'.$row['cep'].'</span>'; 
           $tabela .= '<span class="linha"> Bairro : '.$row['bairro'].', Complemento: '.$row['complemento'].', Rua :'.$row['rua'].'</span>'; 
@@ -241,6 +242,12 @@ function resposta_email(){
 
   var assunto = document.getElementById('assunto').value;
   var conteudo = document.getElementById('conteudo').value;
+  
+  var email = $('#email').text();
+  var newEmail = email.split(':');
+  
+  var id = $('#id').text();
+
 
   var obj = {
         dataSend: []
@@ -249,7 +256,9 @@ function resposta_email(){
     obj.dataSend.push(
       {
         Assunto: assunto,
-        Conteudo: conteudo
+        Conteudo: conteudo,
+        Email: newEmail[1],   
+        Id: id
       })
 
       var json = JSON.stringify(obj);
@@ -265,7 +274,6 @@ function resposta_whatsapp(){
 $(".resposta").click(function () {
    $('#myModal').modal();
 });
-
 
 
 

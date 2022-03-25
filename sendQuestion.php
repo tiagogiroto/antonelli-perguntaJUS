@@ -1,4 +1,4 @@
-
+<!-- 
 <style>
   .id-login{
     margin-left: 93%;
@@ -10,69 +10,65 @@
 .sair{
     font-size: 15px;
 }
-</style>
+</style> -->
+
 <?php 
 $URI = urldecode($_SERVER['REQUEST_URI']);
 $whatIWant = substr($URI, strpos($URI, ':[{') + 3);    
 $arrray = explode('","', $whatIWant);
 
-// print_r($arrray);
+
 
 $nome = substr($arrray[0], strpos($arrray[0],"Nome:")+7);
 $nome = strtr($nome, '"', " ");
-// echo $nome;
+
 
 $profissao = substr($arrray[1], strpos($arrray[1],"Profissao:")+11);
 $profissao = strtr($profissao, '"', " ");
-// echo $profissao;
+
 
 $cpf = substr($arrray[2], strpos($arrray[2],"Cpf:")+5);
 $cpf = strtr($cpf, '"', " ");
-// echo $cpf; 
+
 
 $rg = substr($arrray[3], strpos($arrray[3],"Rg:")+4);
 $rg = strtr($rg, '"', " ");
-// echo $rg; 
+
 
 $email = substr($arrray[4], strpos($arrray[4],"Email:")+7);
 $email = strtr($email, '"', " ");
-// echo $email; 
+
 
 $telefone = substr($arrray[5], strpos($arrray[5],"Telefone:")+10);
 $telefone = strtr($telefone, '"', " ");
-// echo $telefone; 
+
 
 $cep = substr($arrray[6], strpos($arrray[6],"Cep:")+5);
 $cep = strtr($cep, '"', " ");
-// echo $cep; 
+
 
 $bairro = substr($arrray[7], strpos($arrray[7],"Bairro:")+8);
 $bairro = strtr($bairro, '"', " ");
-// echo $bairro; 
+
 
 $complemento = substr($arrray[8], strpos($arrray[8],"Complemento:")+13);
 $complemento = strtr($complemento, '"', " ");
-// echo $complemento; 
+
 
 $rua = substr($arrray[9], strpos($arrray[9],"Rua:")+5);
 $rua = strtr($rua, '"', " ");
-// echo $rua; 
+
 
 $estado = substr($arrray[10], strpos($arrray[10],"Estado:")+8);
 $estado = strtr($estado, '"', " ");
-// echo $estado; 
+ 
 
 $cidade = substr($arrray[11], strpos($arrray[11],"Cidade:")+8);
 $cidade = strtr($cidade, '"', " ");
-// echo $cidade; 
 
-$cidade = substr($arrray[11], strpos($arrray[11],"Cidade:")+8);
-$cidade = strtr($cidade, '"', " ");
-// echo $cidade; 
 
 $assunto = substr($arrray[12], strpos($arrray[12],"Assunto:")+9);
 $assunto = strtr($assunto, '"', " ");
-// echo $assunto;
 
 $problema = substr($arrray[13], strpos($arrray[13],"Problema:") +11);
 $problema = strtr($problema, '"', " ");
