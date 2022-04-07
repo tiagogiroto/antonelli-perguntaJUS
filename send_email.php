@@ -79,13 +79,10 @@ $id = strtr($id, '}', " ");
             $usuario_resposta = $_SESSION['login'] ;
             
             
-            $sql_LOG_Contatos = "
-                INSERT INTO log_contato 
-                    (id_contato,log,usuario_resposta)
-                VALUES
-                    ($id,'$data_contato','$usuario_resposta')
-                ";
-                
+            $sql_LOG_Contatos = "INSERT INTO log_contato (id_contato,log,usuario_resposta, tipo_resposta)
+                      VALUES ($id,'$data_contato','$usuario_resposta', 2)";
+                      
+                      
                 if (($conn->query($sqlContatos) === TRUE) && ($conn->query($sql_LOG_Contatos))) {
                     echo "  <!DOCTYPE html> ";
                     echo "  <html lang='en'> ";
@@ -104,13 +101,22 @@ $id = strtr($id, '}', " ");
                     echo " </br>";
                     echo " </div>";
                     echo "</div>";
+                    echo "<div class='col text-center'>";
+                    echo "<button class='btn btn-primary' onClick='goTo()'>Ir para relatórios</button>";
+                    echo "</div>";
                     echo "</body>";
                     echo "</html>";
                   } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                   }
-                header( "refresh:5;url=showDataFile.php" );
+                
    
     }
 
 ?>
+
+<script>
+    function goTo(){
+        window.location.href = 'showDataFile.php';
+    }
+</script>

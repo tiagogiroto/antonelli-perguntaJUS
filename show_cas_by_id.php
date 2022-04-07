@@ -37,6 +37,18 @@
   </div>
 </div>
 
+<div class="modal fade" id="myModalWpp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content box-email">
+      <div class="">  
+        <h1 class="titulo-resposta"><strong>Mensagem WhatsApp</strong></h1>
+          <div class="row content">
+          </div>  
+        </div>
+      </div>
+  </div>
+</div>
+
 
 <style>
   .id-login{
@@ -150,7 +162,8 @@
   .campos-resposta{
     text-align: center;
   }
-  .resposta{
+  .resposta, .respostaWpp, .respostaAsc{
+    margin: 30px;
     margin-top: 25px;
     display: inline-block;
     line-height: 2.2em;
@@ -162,8 +175,29 @@
     font-family: arial, sans-serif;
     font-size: 0.8em;
   }
+  .linha-btn{
+    text-align: center !important;
+  }
+
   @media only screen and (max-width: 600px) {
 
+    .respostaWpp{
+      background-image: url('wpp.png');
+      background-repeat: no-repeat;
+      background-size: 18% auto;
+      background-position: right;
+      background-color: #ddd;
+    }
+    .resposta{
+      background-image: url(email.png);
+      background-repeat: no-repeat;
+      background-size: 15% 45%;
+      background-position: right;
+      background-color: #ddd;
+    }
+      .folha{
+        width: 95% !important;
+      }
       .id-login {
           margin-left: 0% !important;
           margin-top: -20px !important;
@@ -211,14 +245,18 @@ $id = strtr($id, '}', " ");
           $tabela .= '<span class="linha">CPF :'.$row['cpf'].'</span>'; 
           $tabela .= '<span class="linha">RG : '.$row['rg'].'</span>'; 
           $tabela .= '<span class="linha" id="email"> Email :'.$row['email'].'</span>'; 
-          $tabela .= '<span class="linha"> Telefone :'.$row['telefone'].'</span>'; 
+          $tabela .= '<span class="linha" id="telefone" > Telefone :'.$row['telefone'].'</span>'; 
           $tabela .= '<span class="linha"> CEP :'.$row['cep'].'</span>'; 
           $tabela .= '<span class="linha"> Bairro : '.$row['bairro'].', Complemento: '.$row['complemento'].', Rua :'.$row['rua'].'</span>'; 
-          $tabela .= '<span class="linha">Estado :'.$row['estado'].' Cidade :'.$row['cidade'].'</span>'; 
+          $tabela .= '<span class="linha" id="estado">Estado :'.$row['estado'].' ,Cidade :'.$row['cidade'].'</span>'; 
           $tabela .= '</br>'; 
           $tabela .= '<span class="linha">  Assunto :'.$row['assunto'].'</span>'; 
           $tabela .= '<span class="linha"> Problema<p>'.$row['problema'].'</p></span>'; 
-        
+
+          if($_SESSION['autorizacao'] < 2):
+            $tabela .= '<span class="linha linha-btn"><label class="respostaAsc" id="respostaAsc" onclick="enviar_para_associado()">Enviar para associado</label></span>';
+          endif;
+          
         }
 
         
@@ -226,6 +264,7 @@ $id = strtr($id, '}', " ");
         // $tabela .= '<input type="checkbox" id="test6"/>';
         $tabela .= '<div class="campos-resposta">';
         $tabela .= '<label class="resposta" id="resposta">Responder via Email</label>';
+        $tabela .= '<label class="respostaWpp" id="respostaWpp" onclick="resposta_whatsapp()">Responder via Whatsapp</label>';
         $tabela .= '</div>';
 
       echo $tabela;
@@ -236,7 +275,12 @@ $id = strtr($id, '}', " ");
 ?>
 
 
+
 <script>
+
+
+
+
 function resposta_email(){
 
 
@@ -268,13 +312,95 @@ function resposta_email(){
 
 function resposta_whatsapp(){
 
+  var telefone = $('#telefone').text();
+  var newTelefone = telefone.split(':');
+
+  resposta_Wpp(newTelefone[1])
+  
+  
 }
 
+async function resposta_Wpp(tel){
+
+  window.open("https://api.whatsapp.com/send?phone=55"+ tel + "&amp;text=",'_blank');
+
+}
+
+function send_msg_wpp(){
+
+  var id = $('#id').text();
+
+
+  var obj = 
+    {
+      dataSend: []
+    }
+
+    obj.dataSend.push(
+      {
+        Id: id
+      })
+
+      var json = JSON.stringify(obj);
+
+ 
+    window.location.href= "send_wpp.php?" + json;
+
+
+}
+
+function enviar_para_associado(){
+
+  var id = $('#id').text();
+  var estado = $('#estado').text();
+  var newEstado= estado.split(':');
+  var estadoEnvio = newEstado[1].split(',');
+
+
+  var obj = 
+    {
+      dataSend: []
+    }
+
+    obj.dataSend.push(
+      {
+        Id: id,
+        Estado: estadoEnvio[0],
+        Cidade: newEstado[2]
+
+      })
+
+      var json = JSON.stringify(obj);
+
+      console.log(json)
+      window.location.href= "verify_send_associate.php?" + json;
+
+}
 
 $(".resposta").click(function () {
    $('#myModal').modal();
 });
 
+$(".respostaWpp").click(function () {
+   $('#myModalWpp').modal();
+});
+
+$("#myModalWpp").on("hidden.bs.modal", function () {
+  // do something…
+
+  var r=confirm("Você respondeu a mensagem ?");
+
+  if (r==true)
+  {
+    x="You pressed OK!";
+    send_msg_wpp();
+  }
+  else
+  {
+    x="You pressed Cancel!";
+  }
+
+})
 
 
 </script>

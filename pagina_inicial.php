@@ -29,12 +29,13 @@
                 <div>
                     <div class="row">
                         <div class="col-sm-12 text-center">
-                            <!-- <button class="btn btn-primary" type="button" onclick="goToLogin()">Sou Revendedor</button>
-                            <button class="btn btn-primary" type="button" onclick="goToCad()">Quero ser revendedor</button> -->
+
                             <button class="btn btn-primary" type="button" onclick="goToRel()">Relatórios</button>
-                            <!-- <button class="btn btn-primary" type="button" onclick="goToCadLojista()">Cadastro de Lojista</button>
-                            <button class="btn btn-primary" type="button" onclick="VerRelatorioLojista()">Ver Relatorio Lojista</button>
-                            <button class="btn btn-primary" type="button" onclick="FazerRelatorioLojista()">Atualizar Contato com lojista</button> -->
+
+                            <?php
+                            if($_SESSION['autorizacao'] === "1")
+                                echo "<button class='btn btn-primary' type='button' onclick='goToCad()'>Cadastrar Associado</button> ";
+                            ?>
                         </div>    
                       </div>
                 </div>
@@ -50,10 +51,14 @@
         location.href="./showDataFile.php";
     }
 
+    function goToCad(){
+        location.href="./cadastro_associado.php";
+    }
 </script>
 
 </body>
 </html>
+
 <style>
 .id-login{
     margin-left: 93%;

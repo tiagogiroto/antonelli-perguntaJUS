@@ -1,17 +1,3 @@
-<!-- 
-<style>
-  .id-login{
-    margin-left: 93%;
-
-}
-.nome-login{
-    font-size: 13px;
-}
-.sair{
-    font-size: 15px;
-}
-</style> -->
-
 <?php 
 $URI = urldecode($_SERVER['REQUEST_URI']);
 $whatIWant = substr($URI, strpos($URI, ':[{') + 3);    
@@ -72,18 +58,19 @@ $assunto = strtr($assunto, '"', " ");
 
 $problema = substr($arrray[13], strpos($arrray[13],"Problema:") +11);
 $problema = strtr($problema, '"', " ");
-// $problema = strtr($problema, '"', " ");
+$problema = strtr($problema, "'", " ");
 $problema = strtr($problema, ']', " ");
 $problema = strtr($problema, '}', " ");
 
-
+date_default_timezone_set('America/Sao_Paulo');
+$data_contato = date('m-d-Y h:i:s a', time());
 
 
 include('conexao.php');
 
 // // # Executa a query desejada 
-$sql = "INSERT INTO contato(nome,profissao,cpf,rg,email,telefone,cep,bairro,complemento,rua,estado,cidade,assunto,problema,resposta) VALUES ('$nome','$profissao','$cpf','$rg','$email','$telefone','$cep','$bairro','$complemento','$rua','$estado','$cidade','$assunto','$problema',1)";
-
+$sql = "INSERT INTO contato(nome,profissao,cpf,rg,email,telefone,cep,bairro,complemento,rua,estado,cidade,assunto,problema,resposta,data_contato) 
+VALUES ('$nome','$profissao','$cpf','$rg','$email','$telefone','$cep','$bairro','$complemento','$rua','$estado','$cidade','$assunto','$problema',1,'$data_contato')";
 
 
 if ($conn->query($sql) === TRUE) {
@@ -107,7 +94,7 @@ if ($conn->query($sql) === TRUE) {
     echo "</body>";
     echo "</html>";
   } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error---------------: " . $sql . "<br>" . $conn->error;
   }
 
   

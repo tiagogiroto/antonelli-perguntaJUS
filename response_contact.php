@@ -14,7 +14,7 @@ $id = strtr($id, ']', " ");
 $id = strtr($id, '}', " "); 
 
 // trocar id tabela de contatos
-// include('conexao.php');
+include('conexao.php');
 
 $sqlContatos =  '
     UPDATE contato 

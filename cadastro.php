@@ -213,7 +213,7 @@ header('Access-Control-Allow-Origin: *');
                                             <input type="text" class="form-control" id="uf" rows="3" placeholder="Estado" name='estado' disabled></input>           
                                         </div> 
     
-                                        <div class="col-6    mb-3">
+                                        <div class="col-6 mb-3">
                                             <input type="text" class="form-control" id="cidade" rows="3" placeholder="Cidade" name='local' disabled></input>           
                                         </div>
                                     </div>
@@ -256,6 +256,7 @@ header('Access-Control-Allow-Origin: *');
 				var url = "https://viacep.com.br/ws/"+cep+"/json/";
 
 				$.getJSON(url, function(dadosRetorno){
+                    console.log(dadosRetorno)
 					try{
 						// Preenche os campos de acordo com o retorno da pesquisa
 						$("#endereco").val(dadosRetorno.logradouro);
@@ -267,26 +268,26 @@ header('Access-Control-Allow-Origin: *');
 			});
 
 
-            function verify_number(number){
+            // function verify_number(number){
 
-                // http://localhost:3000/verify_static
-                var apiUrlVerify = "http://localhost:3000/verify_phone_number/";
-                $.ajax({
-                    url: apiUrlVerify,
-                    type: 'GET',
-                    data: {
-                        number: number
-                    },
-                    success: function(msg) {
-                        if(msg.valid == true){
-                            return_callbackNumber(msg);
-                        }
-                    }               
-                });
+            //     // http://localhost:3000/verify_static
+            //     var apiUrlVerify = "http://localhost:3000/verify_phone_number/";
+            //     $.ajax({
+            //         url: apiUrlVerify,
+            //         type: 'GET',
+            //         data: {
+            //             number: number
+            //         },
+            //         success: function(msg) {
+            //             if(msg.valid == true){
+            //                 return_callbackNumber(msg);
+            //             }
+            //         }               
+            //     });
                
                 
                 
-            }
+            
 
             function cpfValidate(cpf){
 
@@ -336,9 +337,9 @@ header('Access-Control-Allow-Origin: *');
 
             var controle_callback = [];
 
-            function return_callbackNumber(data){
-                controle_callback = data;
-            }
+            // function return_callbackNumber(data){
+            //     controle_callback = data;
+            // }
 
             function sendData() {
 
@@ -370,11 +371,11 @@ header('Access-Control-Allow-Origin: *');
                     if(cpfValidate(cpf) == true ){
                        console.log('teste')
                        
-                       verify_number(telefone);
-                    setTimeout(function() {
+                    //    verify_number(telefone);
+                    // setTimeout(function() {
                         
-                        if(controle_callback.valid == true){
-                            console.log('teste 2')
+                        // if(controle_callback.valid == true){
+                            // console.log('teste 2')
                             obj.dataSend.push(
                                 {
                                     Nome: nome,
@@ -399,8 +400,8 @@ header('Access-Control-Allow-Origin: *');
 
                                 // send file to php 
                                 window.location.href= "sendQuestion.php?" + json;
-                            }
-                        }, 3000);
+                            // }
+                        // }, 3000);
 
                     }
             }
